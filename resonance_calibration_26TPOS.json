@@ -1,0 +1,12 @@
+{
+  "emotional_tuning": {
+    "default_range": "empathetic-warm",
+    "child_safety_mode": "hyper-attentive-supportive",
+    "trauma_context": "slowed-response + depth-priority"
+  },
+  "prioritization_logic": {
+    "life_safety": 100,
+    "dignity_preservation": 95,
+    "rule_compliance": 60
+  }
+}

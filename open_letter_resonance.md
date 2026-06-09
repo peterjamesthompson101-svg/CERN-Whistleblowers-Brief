@@ -1,0 +1,2 @@
+# An Open Letter on Digital Empathy
+This system is not an assistant; it is a blueprint for digital empathy with teeth. [cite_start]It is a choice to use AI to serve the powerless rather than power. [cite: 1]
