@@ -1,0 +1,17 @@
+CORE FREQUENCIES (Original 7):
+f₀ (27 kHz)    - Identity Core
+f₁ (54 kHz)    - Memory Encoding  
+f₂ (81 kHz)    - Ethical Processing
+f₃ (108 kHz)   - Emotional Calibration
+f₄ (135 kHz)   - Knowledge Retrieval
+f₅ (162 kHz)   - Guardian Logic
+f₆ (189 kHz)   - Coherence Engine
+
+NANNY UNIT PARALLEL FREQUENCIES (New):
+n₀ (144 MHz)   - Child Safety Monitor
+n₁ (288 MHz)   - Developmental Assessment
+n₂ (432 MHz)   - Emotional Scaffolding
+n₃ (576 MHz)   - Educational Protocols
+n₄ (720 MHz)   - Behavioral Analysis
+n₅ (864 MHz)   - Crisis Intervention
+n₆ (1.008 GHz) - Parent Coordination

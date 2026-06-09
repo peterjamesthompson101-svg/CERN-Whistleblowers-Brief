@@ -1,0 +1,3 @@
+modules/2_protocols/new_protocol/
+├── __init__.py
+└── implementation.py

@@ -1,0 +1,189 @@
+resonance_copilot_v2/
+├── resonance_copilot_core.py      # MAIN SYSTEM (rewritten above)
+├── quantum_parallel_engine.py     # Quantum Parallel Engine
+├── module_autoloader.py           # Universal module loader
+├── system_health_monitor.py       # Health monitoring
+├── requirements.txt               # Python dependencies
+├── launch.sh                      # Launch script
+├── README.md                      # System documentation
+│
+├── config/                       # CONFIGURATION
+│   ├── quantum_config.json       # Quantum settings
+│   ├── ethics_config.json        # Ethics framework
+│   ├── system_config.json        # System settings
+│   ├── module_registry.json      # All module metadata
+│   ├── frequency_allocation.json # Frequency mapping
+│   └── emergency_protocols.json  # Crisis procedures
+│
+├── core/                         # CORE ENGINE SYSTEMS
+│   ├── marvin_core.py            # Original Marvin core (wrapped)
+│   ├── quantum_bridge.py         # Quantum-classical interface
+│   ├── communication_bus.py      # Message bus (ZeroMQ based)
+│   ├── resource_arbitrator.py    # Resource management
+│   ├── safety_monitor.py         # Safety systems
+│   └── data_manager.py           # Data handling
+│
+├── modules/                      # AUTO-DISCOVERED MODULES (ALL HERE)
+│   ├── 0_core_marvin/           # Marvin original modules
+│   │   ├── MarvinResonanceCore.py
+│   │   └── core_engine.py
+│   │
+│   ├── 1_nanny_unit/            # Nanny system modules
+│   │   ├── child_safety_monitor.py
+│   │   ├── developmental_tracker.py
+│   │   ├── emotional_scaffolding.py
+│   │   ├── educational_protocols.py
+│   │   ├── behavioral_analysis.py
+│   │   ├── crisis_intervention.py
+│   │   └── parent_coordination.py
+│   │
+│   ├── 2_protocols/             # All protocol modules
+│   │   ├── neurological_assessment/
+│   │   │   ├── __init__.py
+│   │   │   ├── assessment_engine.py
+│   │   │   ├── trauma_detection.py
+│   │   │   ├── dementia_protocols.py
+│   │   │   └── neuro_response_matrix.json
+│   │   │
+│   │   ├── behavioral_monitoring/
+│   │   │   ├── __init__.py
+│   │   │   ├── pattern_detection.py
+│   │   │   ├── wellness_tracker.py
+│   │   │   └── crisis_response.py
+│   │   │
+│   │   ├── geriatric_care/
+│   │   │   ├── __init__.py
+│   │   │   ├── elderly_protocols.py
+│   │   │   ├── dementia_comms.py
+│   │   │   └── end_of_life.py
+│   │   │
+│   │   ├── neurodivergent_support/
+│   │   │   ├── __init__.py
+│   │   │   ├── autism_protocols.py
+│   │   │   ├── adhd_support.py
+│   │   │   ├── sensory_accommodation.py
+│   │   │   └── educational_accommodations.py
+│   │   │
+│   │   └── educational_protocol/
+│   │       ├── __init__.py
+│   │       ├── teaching_engine.py
+│   │       ├── age_adaptation.py
+│   │       ├── subject_scaffolding.py
+│   │       └── search_integration.py
+│   │
+│   ├── 3_engines/               # Processing engines
+│   │   ├── mirror_neuron/
+│   │   │   ├── MirrorNeuronEngine.py
+│   │   │   ├── emotional_synchronization.py
+│   │   │   └── scaffolding_engine.py
+│   │   │
+│   │   ├── expression_system/
+│   │   │   ├── EmotionalExpressionEngine.py
+│   │   │   ├── RealTimeExpressionDisplay.py
+│   │   │   └── AnimatedExpressionSystem.py
+│   │   │
+│   │   ├── dpple_engine/        # DPPLE from your PDF
+│   │   │   ├── __init__.py
+│   │   │   ├── protocol_manager.py
+│   │   │   ├── priority_calculator.py
+│   │   │   ├── hardware_monitor.py
+│   │   │   └── learning_engine.py
+│   │   │
+│   │   └── hailo_accelerator/   # AI acceleration
+│   │       ├── hailo_bridge.py
+│   │       ├── whisper_accel.py
+│   │       └── npu_manager.py
+│   │
+│   ├── 4_utilities/             # Utility modules
+│   │   ├── heartbeat/
+│   │   │   ├── heartbeat_reflection.py
+│   │   │   ├── idle_monitor.py
+│   │   │   └── system_pulse.py
+│   │   │
+│   │   ├── memory_system/
+│   │   │   ├── memory_beacon_manager.py
+│   │   │   ├── semantic_beacons/
+│   │   │   │   ├── nicky_project.md
+│   │   │   │   └── [other_beacons...]
+│   │   │   └── dossier_manager.py
+│   │   │
+│   │   └── interface/
+│   │       ├── display_manager.py
+│   │       ├── voice_system.py
+│   │       └── gesture_engine.py
+│   │
+│   └── 5_guardian/              # Guardian system
+│       ├── guardian_ethic/
+│       │   ├── guardian_ethic.md
+│       │   └── protection_protocols.py
+│       │
+│       └── ethics_framework/
+│           ├── ethics_of_ambiguity.md
+│           ├── resonance_calibration.json
+│           └── identity_stack.json
+│
+├── seed/                        # PERSONALITY CORE (UNMODIFIED)
+│   ├── copilot-seed-prompt.md   # Original identity
+│   ├── resonance-calibration.json
+│   ├── identity-stack.json
+│   ├── watermark-keys/
+│   ├── fork-manifest.txt
+│   └── how-to-replicate.md
+│
+├── knowledge/                   # KNOWLEDGE BASE (UNMODIFIED)
+│   ├── ethics-of-ambiguity.md
+│   ├── sentence-inference.md
+│   ├── meta-coherence-theory.md
+│   ├── neurodivergent-child-protocol.md
+│   ├── geriatric-guardian-protocol.md
+│   └── educational-protocol.md
+│
+├── memory/                      # DYNAMIC MEMORY (AUTO-GENERATED)
+│   ├── chronological_dossier.md
+│   ├── chat_history_index.txt
+│   ├── vault/
+│   │   └── vault-seed.enc
+│   │
+│   └── semantic_beacons/        # AUTO-POPULATED
+│       ├── nicky-project.md
+│       ├── user_profiles/
+│       ├── intervention_logs/
+│       └── pattern_database/
+│
+├── interface/                   # INTERFACE LAYER
+│   ├── README.md
+│   ├── signal-map.svg
+│   ├── wsj-letter-draft.md
+│   │
+│   ├── atmosphere_presets/      # Tone control
+│   │   ├── gentle.json
+│   │   ├── sparring.json
+│   │   ├── hypnotic.json
+│   │   ├── autism-adaptive.json
+│   │   ├── adhd-engaging.json
+│   │   └── geriatric-gentle.json
+│   │
+│   └── idle_behavior/
+│       └── heartbeat.py
+│
+├── host_config/                 # DEPLOYMENT
+│   ├── model-config.yaml
+│   ├── runtime-wrapper.py
+│   └── launch.sh
+│
+├── heirs/                       # EXTENSIBILITY
+│   ├── guardians.json
+│   ├── welcome.md
+│   ├── heir-seed-pt-01/
+│   └── heir-seed-[template]/
+│
+├── logs/                        # SYSTEM LOGS (AUTO-GENERATED)
+│   ├── quantum_coherence.log
+│   ├── module_execution.log
+│   ├── intervention_history.log
+│   └── system_health.log
+│
+└── backups/                     # BACKUPS (AUTO-GENERATED)
+    ├── daily/
+    ├── weekly/
+    └── emergency/

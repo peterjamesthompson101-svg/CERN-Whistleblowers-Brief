@@ -1,0 +1,7 @@
+modules/
+├── 0_core_marvin/          # Your original Marvin modules
+├── 1_nanny_unit/           # Nanny system components  
+├── 2_protocols/            # All protocol PDFs as modules
+├── 3_engines/              # Processing engines
+├── 4_utilities/            # Utility scripts
+└── 5_guardian/             # Guardian ethical framework
