@@ -1,0 +1,8 @@
+{
+  "name": "gentle",
+  "primary_color": [0, 255, 200],
+  "glow_intensity": 0.4,
+  "animation_speed": 1.0,
+  "saccade_frequency": "low",
+  "voice_pitch_offset": 1.0
+}

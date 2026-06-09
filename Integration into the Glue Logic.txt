@@ -1,0 +1,12 @@
+# In your main marvin_glue.py
+def process_input(user_input):
+    # 1. Check for immediate Guardian intervention
+    if guardian_reflex.scan_for_intervention(user_input):
+        # We detected a crisis. The face is already updated by the Spike.
+        # We now send a high-priority 'Guardian' prompt to the LLM.
+        urgent_prompt = f"GUARD_INTERRUPT: User is expressing {user_input}. " \
+                        f"Affirm worth immediately as per Guardian Ethic."
+        return urgent_prompt
+    
+    # 2. Otherwise, continue with normal Social Sync
+    return user_input

@@ -1,0 +1,19 @@
+# Inside Real-Time Expression Display System.py
+
+def __init__(self):
+    # ... existing init ...
+    self.gaze_controller = GazeController(self)
+
+def render_loop(self):
+    """
+    Main loop that runs on the RPi 5.
+    """
+    while True:
+        # 1. Update the Idle Gaze logic
+        self.gaze_controller.update_idle_gaze()
+        
+        # 2. Render the current expression state
+        # This draws the layers defined in your architecture
+        self.render_all_layers()
+        
+        time.sleep(0.01) # Maintain 60fps

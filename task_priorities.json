@@ -1,0 +1,56 @@
+{
+  "priority_levels": {
+    "critical": {
+      "range": [90, 100],
+      "description": "Safety and essential functions",
+      "deferrable": false,
+      "examples": ["safety_monitoring", "emergency_response"]
+    },
+    "high": {
+      "range": [70, 89],
+      "description": "Primary activity functions",
+      "deferrable": true,
+      "max_deferral": 60,
+      "examples": ["toy_recognition", "emotion_detection"]
+    },
+    "medium": {
+      "range": [40, 69],
+      "description": "Supporting functions",
+      "deferrable": true,
+      "max_deferral": 300,
+      "examples": ["conversation_analysis", "progress_tracking"]
+    },
+    "low": {
+      "range": [10, 39],
+      "description": "Background analysis",
+      "deferrable": true,
+      "max_deferral": 600,
+      "examples": ["behavioral_pattern_analysis", "system_optimization"]
+    },
+    "reflection": {
+      "range": [1, 9],
+      "description": "Deep analysis tasks",
+      "deferrable": true,
+      "max_deferral": 1800,
+      "examples": ["long_term_trend_analysis", "model_retraining"]
+    }
+  },
+  
+  "context_boosts": {
+    "tea_party_active": {
+      "toy_recognition": 20,
+      "child_emotion_detection": 25,
+      "ar_overlay_render": 15
+    },
+    "creative_session": {
+      "drawing_canvas_render": 20,
+      "color_palette_management": 15,
+      "ai_assistance": 10
+    },
+    "crisis_emergency": {
+      "safety_monitoring": 30,
+      "emergency_response": 25,
+      "alert_generation": 20
+    }
+  }
+}

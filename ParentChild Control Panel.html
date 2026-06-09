@@ -1,0 +1,147 @@
+<div class="tea-party-controls">
+    <h2>Marvin's Magical Tea Party</h2>
+    
+    <!-- Camera Feed with AR Overlay -->
+    <div class="camera-feed">
+        <video id="cameraFeed" autoplay></video>
+        <canvas id="arOverlay"></canvas>
+    </div>
+    
+    <!-- Toy Roster -->
+    <div class="toy-roster">
+        <h3>Party Guests</h3>
+        <div id="toyList">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+    
+    <!-- Marvin's Expression -->
+    <div class="marvin-expression">
+        <canvas id="marvinFace" width="400" height="300"></canvas>
+        <div class="marvin-status">
+            <span id="marvinMood">Happy</span>
+            <span id="marvinEnergy">High</span>
+        </div>
+    </div>
+    
+    <!-- Controls -->
+    <div class="party-controls">
+        <button onclick="startTeaParty()">Start Tea Party</button>
+        <button onclick="addMagicalEffect()">Add Magic</button>
+        <button onclick="takeTeaPartyPhoto()">Take Photo</button>
+        <button onclick="endTeaParty()">End Party</button>
+    </div>
+    
+    <!-- Child's Emotion Display -->
+    <div class="child-emotion-display">
+        <h3>How You're Feeling</h3>
+        <div class="emotion-meter">
+            <div class="emotion-bar" id="happinessBar"></div>
+            <div class="emotion-bar" id="excitementBar"></div>
+            <div class="emotion-bar" id="engagementBar"></div>
+        </div>
+        <p id="currentEmotion">Detecting emotion...</p>
+    </div>
+    
+    <!-- Toy Chat -->
+    <div class="toy-chat">
+        <h3>Party Conversation</h3>
+        <div class="chat-log" id="toyChatLog">
+            <!-- Conversation appears here -->
+        </div>
+        <div class="child-response">
+            <input type="text" id="childResponse" placeholder="Type your response...">
+            <button onclick="sendResponse()">Send</button>
+            <button onclick="speakResponse()">🎤 Speak</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// WebSocket connection for real-time updates
+const teaPartyWS = new WebSocket('ws://localhost:8765/tea-party');
+
+teaPartyWS.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    
+    switch(data.type) {
+        case 'toy_detected':
+            addToyToRoster(data.toy);
+            break;
+        case 'marvin_expression':
+            updateMarvinExpression(data.expression, data.intensity);
+            break;
+        case 'toy_speaking':
+            addToyToChat(data.toy, data.message);
+            break;
+        case 'child_emotion_update':
+            updateEmotionDisplay(data.emotion);
+            break;
+        case 'ar_effect':
+            showAREffect(data.effect);
+            break;
+        case 'magical_moment':
+            celebrateMagicalMoment(data.moment);
+            break;
+    }
+};
+
+// Camera access
+async function startCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { width: 1280, height: 720 } 
+        });
+        document.getElementById('cameraFeed').srcObject = stream;
+    } catch (err) {
+        console.error("Camera error: ", err);
+    }
+}
+
+// Start tea party
+function startTeaParty() {
+    teaPartyWS.send(JSON.stringify({
+        type: 'start_tea_party',
+        user_profile: getUserProfile()
+    }));
+    
+    // Start emotion detection
+    startEmotionDetection();
+}
+
+// Emotion detection using webcam
+function startEmotionDetection() {
+    const video = document.getElementById('cameraFeed');
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    setInterval(() => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx.drawImage(video, 0, 0);
+        
+        // Send frame to server for emotion analysis
+        const imageData = canvas.toDataURL('image/jpeg', 0.5);
+        teaPartyWS.send(JSON.stringify({
+            type: 'emotion_frame',
+            image: imageData
+        }));
+    }, 1000); // Send every second
+}
+
+// Update emotion display
+function updateEmotionDisplay(emotionData) {
+    document.getElementById('happinessBar').style.width = 
+        `${emotionData.happiness * 100}%`;
+    document.getElementById('excitementBar').style.width = 
+        `${emotionData.excitement * 100}%`;
+    document.getElementById('engagementBar').style.width = 
+        `${emotionData.engagement * 100}%`;
+    
+    document.getElementById('currentEmotion').textContent = 
+        `You're feeling ${emotionData.primary_emotion}`;
+}
+
+// Initialize
+startCamera();
+</script>

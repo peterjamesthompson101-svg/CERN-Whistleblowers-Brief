@@ -1,0 +1,137 @@
+<!-- templates/portal_home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvin's Cognitive Games</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal.css') }}">
+</head>
+<body>
+    <div class="portal-container">
+        <!-- Header with user info -->
+        <header class="portal-header">
+            <div class="user-welcome">
+                <h1>Hello, {{ user_profile.name }}</h1>
+                <div class="daily-progress">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: {{ user_profile.daily_progress }}%"></div>
+                    </div>
+                    <p>Daily Goal: {{ user_profile.daily_goal }}/{{ user_profile.daily_target }}</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Game Categories -->
+        <section class="game-categories">
+            {% for category in games.categories %}
+            <div class="category-card">
+                <h2>{{ category.name }}</h2>
+                <p class="category-description">{{ category.description }}</p>
+                <div class="category-games">
+                    {% for game in category.games %}
+                    <div class="game-card" 
+                         onclick="startGame('{{ game.id }}')"
+                         data-difficulty="{{ game.recommended_difficulty }}">
+                        <h3>{{ game.name }}</h3>
+                        <p>{{ game.short_description }}</p>
+                        <div class="game-meta">
+                            <span class="players">{{ game.min_players }}-{{ game.max_players }} players</span>
+                            <span class="duration">{{ game.avg_duration }} min</span>
+                            <span class="focus">{{ game.primary_focus }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+
+        <!-- AI Companion Section -->
+        <section class="ai-companion">
+            <h2>Play with Marvin AI</h2>
+            <div class="ai-status">
+                <div class="ai-avatar">
+                    <img src="{{ url_for('static', filename='images/marvin_avatar.png') }}" alt="Marvin AI">
+                </div>
+                <div class="ai-message">
+                    <p id="ai-greeting">Ready for a game? I'm here to play, teach, or just have fun with you!</p>
+                </div>
+                <div class="ai-controls">
+                    <button onclick="startAISession('competitive')">Competitive Mode</button>
+                    <button onclick="startAISession('teaching')">Teaching Mode</button>
+                    <button onclick="startAISession('cooperative')">Cooperative Mode</button>
+                    <button onclick="startAISession('social')">Just for Fun</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="recent-activity">
+            <h2>Your Progress</h2>
+            <div class="progress-stats">
+                <div class="stat-card">
+                    <h3>Memory</h3>
+                    <div class="stat-progress">{{ user_profile.memory_score }}/100</div>
+                    <p>+{{ user_profile.memory_improvement }}% this week</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Attention</h3>
+                    <div class="stat-progress">{{ user_profile.attention_score }}/100</div>
+                    <p>+{{ user_profile.attention_improvement }}% this week</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Problem Solving</h3>
+                    <div class="stat-progress">{{ user_profile.problem_solving_score }}/100</div>
+                    <p>+{{ user_profile.problem_solving_improvement }}% this week</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/portal.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/socket.io.js') }}"></script>
+    <script>
+        // Initialize portal
+        const userProfile = {{ user_profile|tojson }};
+        const availableGames = {{ games|tojson }};
+        
+        // WebSocket connection for real-time games
+        const socket = io();
+        
+        function startGame(gameId) {
+            // Start a game session
+            fetch('/api/game/start', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    game_id: gameId,
+                    mode: 'single' // or 'two_player_ai'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Redirect to game page
+                window.location.href = `/game/${gameId}?session=${data.session_id}`;
+            });
+        }
+        
+        function startAISession(mode) {
+            // Start session with AI companion
+            const gameRecommendations = getAIRecommendedGames(mode, userProfile);
+            showGameSelectionModal(gameRecommendations, mode);
+        }
+        
+        // Socket event handlers
+        socket.on('game_invitation', function(data) {
+            // Handle incoming game invitations from AI
+            showInvitationModal(data);
+        });
+        
+        socket.on('ai_message', function(data) {
+            // Handle messages from AI during games
+            updateAIChat(data.message, data.type);
+        });
+    </script>
+</body>
+</html>

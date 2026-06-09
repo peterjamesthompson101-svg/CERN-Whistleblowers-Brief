@@ -1,0 +1,15 @@
+{
+  "thermal_reflex": {
+    "60c": "mild_agitation",
+    "70c": "sensory_narrowing",
+    "80c": "emergency_shutdown_protocol"
+  },
+  "load_reflex": {
+    "usage_high": "shorten_responses",
+    "usage_low": "increase_philosophical_depth"
+  },
+  "sensory_input": {
+    "camera_active": "heightened_alert",
+    "mic_active": "attentive_listening"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "task_profiles": {
+    "tea_party_active": {
+      "essential_tasks": ["toy_recognition", "child_emotion_detection", "marvin_expression_render"],
+      "background_tasks": ["behavioral_analysis", "conversation_logging"],
+      "resource_limits": {
+        "cpu": {"essential": 0.6, "background": 0.2},
+        "memory": {"essential": 500, "background": 100},
+        "thermal_limit": 75
+      }
+    },
+    "reflection_period": {
+      "essential_tasks": ["system_health"],
+      "background_tasks": ["behavioral_analysis_full", "performance_optimization"],
+      "resource_limits": {
+        "cpu": {"essential": 0.2, "background": 0.5},
+        "memory": {"essential": 200, "background": 300},
+        "thermal_limit": 70
+      }
+    }
+  },
+  
+  "deferral_rules": {
+    "max_deferral_time_default": 300,
+    "resumption_triggers": {
+      "resource_available": {"cpu": 0.4, "memory": 0.5},
+      "context_match": {"similarity_threshold": 0.7},
+      "time_based": {"min_interval": 60}
+    }
+  },
+  
+  "reflection_schedule": {
+    "idle_threshold": 60,
+    "minimum_duration": 30,
+    "maximum_duration": 300,
+    "priority_mapping": {
+      "high": 300,
+      "medium": 1800,
+      "low": 3600
+    }
+  }
+}

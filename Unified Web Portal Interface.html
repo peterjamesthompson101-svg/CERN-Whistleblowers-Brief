@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvin's Interactive Playroom</title>
+    <link rel="stylesheet" href="styles/playroom.css">
+</head>
+<body>
+    <div class="playroom-container">
+        <!-- Marvin's Expression Display -->
+        <div class="marvin-expression-display">
+            <canvas id="marvinFace" width="800" height="600"></canvas>
+            <div class="expression-controls">
+                <button onclick="marvin.setExpression('happy')">😊 Happy</button>
+                <button onclick="marvin.setExpression('excited')">🎉 Excited</button>
+                <button onclick="marvin.setExpression('thinking')">🤔 Thinking</button>
+                <button onclick="marvin.robotDance()">🤖 Robot Dance!</button>
+                <button onclick="marvin.fireworks()">🎆 Fireworks!</button>
+            </div>
+        </div>
+
+        <!-- Activity Selection -->
+        <div class="activity-grid">
+            <!-- Drawing Program -->
+            <div class="activity-card" onclick="startDrawingProgram()">
+                <div class="activity-icon">🎨</div>
+                <h3>Creative Drawing</h3>
+                <p>Draw, color, and create with AI assistance</p>
+                <div class="activity-features">
+                    <span>Coloring Books</span>
+                    <span>AI Assistant</span>
+                    <span>Accessible Tools</span>
+                </div>
+            </div>
+
+            <!-- Tea Party -->
+            <div class="activity-card" onclick="startTeaParty()">
+                <div class="activity-icon">☕</div>
+                <h3>Virtual Tea Party</h3>
+                <p>Join Marvin for tea and conversation</p>
+                <div class="activity-features">
+                    <span>AI Companions</span>
+                    <span>Memory Sharing</span>
+                    <span>Social Games</span>
+                </div>
+            </div>
+
+            <!-- Memory Games -->
+            <div class="activity-card" onclick="startMemoryGames()">
+                <div class="activity-icon">🧠</div>
+                <h3>Memory Games</h3>
+                <p>Brain exercises for all ages</p>
+                <div class="activity-features">
+                    <span>Adaptive Difficulty</span>
+                    <span>Progress Tracking</span>
+                    <span>Therapeutic</span>
+                </div>
+            </div>
+
+            <!-- Social Games -->
+            <div class="activity-card" onclick="startSocialGames()">
+                <div class="activity-icon">👥</div>
+                <h3>Social Games</h3>
+                <p>Play with AI or friends</p>
+                <div class="activity-features">
+                    <span>2-Player Games</span>
+                    <span>AI Opponent</span>
+                    <span>Cooperative Play</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Session Display -->
+        <div class="current-session">
+            <h2>Your Current Activity</h2>
+            <div id="activityContainer">
+                <!-- Activity will load here -->
+            </div>
+        </div>
+
+        <!-- Marvin's Status Panel -->
+        <div class="marvin-status">
+            <div class="status-indicators">
+                <div class="status-item">
+                    <span class="status-label">Mood:</span>
+                    <span class="status-value" id="marvinMood">Happy</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Energy:</span>
+                    <span class="status-value" id="marvinEnergy">High</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Connection:</span>
+                    <span class="status-value" id="marvinConnection">Strong</span>
+                </div>
+            </div>
+            <div class="marvin-message" id="marvinMessage">
+                Ready to play! Choose an activity or just chat with me!
+            </div>
+        </div>
+    </div>
+
+    <!-- WebSocket Connection -->
+    <script src="js/websocket.js"></script>
+    <!-- Marvin Expression Engine -->
+    <script src="js/expression-engine.js"></script>
+    <!-- Activity Loaders -->
+    <script src="js/activity-loader.js"></script>
+    
+    <script>
+        // Initialize Marvin's expression display
+        const marvin = new WebExpressionDisplay('marvinFace');
+        
+        // Connect to WebSocket for real-time updates
+        const ws = new ExpressionWebSocket('ws://localhost:8765');
+        
+        // Start activities
+        function startDrawingProgram() {
+            loadActivity('drawing', {
+                userProfile: getUserProfile(),
+                accessibility: getAccessibilitySettings()
+            });
+        }
+        
+        function startTeaParty() {
+            loadActivity('tea-party', {
+                userProfile: getUserProfile(),
+                participants: selectTeaPartyGuests(),
+                theme: selectTeaPartyTheme()
+            });
+        }
+        
+        // Mirror user's detected emotions
+        function mirrorUserEmotion(emotion) {
+            ws.sendUserEmotion(emotion);
+        }
+        
+        // Update Marvin's status based on activity
+        function updateMarvinStatus(activity, userEngagement) {
+            const status = calculateMarvinStatus(activity, userEngagement);
+            
+            document.getElementById('marvinMood').textContent = status.mood;
+            document.getElementById('marvinEnergy').textContent = status.energy;
+            document.getElementById('marvinMessage').textContent = status.message;
+            
+            // Update expression
+            marvin.setExpression(status.expression, status.intensity);
+        }
+    </script>
+</body>
+</html>
