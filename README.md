@@ -1,5 +1,10 @@
 # CERN-Whistleblowers-Brief
-This brief of scientific papers and cost analysis proves CERN is involved in various crimes including fruad.
+The Grand Unified Field Theory Paper (final draft) is live at:
+
+https://peterjamesthompson101-svg.github.io/The-Grand-Unified-Field-Theory/
+it contains the full theory as evidence.
+
+The CERN Whistleblowers Brief consisting of scientific papers and cost analysis proves CERN is involved in various crimes including fruad.
 To the Governments of Germany, Switzerland, France, and the European Union
 From: Peter James Thompson, ORCID: 0009-0005-8688-7507
 Date: 10 June 2026
